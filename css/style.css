@@ -283,7 +283,6 @@ figcaption {
 .carousel { position: relative; }
 .carousel-viewport { overflow: hidden; border-radius: var(--r-lg); }
 .carousel-track { display: flex; transition: transform .4s ease; }
-.carousel-track[data-animate="off"] { transition: none; }
 .press-slide {
   flex: 0 0 100%; min-width: 100%;
   padding: clamp(1.6rem, 4vw, 2.6rem);
@@ -339,11 +338,6 @@ figcaption {
 .footer-list a { text-decoration: none; }
 .footer-list a:hover { text-decoration: underline; }
 .footer-note { color: #d9c7b0; font-size: .9rem; }
-
-.legal { border-top: 1px solid rgba(255,255,255,.14); padding-block: 2rem; }
-.legal h2 { font-family: var(--font-sous); font-weight: 700; font-size: 1rem; color: #fff; margin: 0 0 .6rem; }
-.legal p { color: #d9c7b0; font-size: .86rem; margin: .3rem 0; max-width: 70ch; }
-.legal a { color: #fff; }
 
 .footer-bottom {
   border-top: 1px solid rgba(255,255,255,.14);
