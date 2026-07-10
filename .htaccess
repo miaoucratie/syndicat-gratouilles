@@ -1,0 +1,37 @@
+# Le Syndicat des Gratouilles — configuration Apache (OVHcloud)
+
+Options -Indexes
+DirectoryIndex index.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Canonicalisation : forcer HTTPS + www en une seule redirection 301
+  RewriteCond %{HTTPS} off [OR]
+  RewriteCond %{HTTP_HOST} !^www\. [NC]
+  RewriteRule ^ https://www.syndicat-des-gratouilles.fr%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# Page d'erreur
+ErrorDocument 404 /404.html
+
+# Compression
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml \
+    application/javascript application/json image/svg+xml application/manifest+json
+</IfModule>
+
+# Cache navigateur des ressources statiques
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  <FilesMatch "\.(css|js|woff2|jpg|jpeg|png|webp|svg|ico)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(html)$">
+    Header set Cache-Control "public, max-age=3600"
+  </FilesMatch>
+</IfModule>
+
+# Types MIME
+AddType font/woff2 .woff2
+AddType application/manifest+json .webmanifest
