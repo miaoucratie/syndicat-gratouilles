@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.syndicat-des-gratouilles.fr/sitemap.xml
+Sitemap: https://syndicat-des-gratouilles.fr/sitemap.xml
