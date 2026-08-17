@@ -177,7 +177,7 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
 .baseline-foot { display: flex; align-items: center; justify-content: space-between; margin-top: .7rem; }
 .baseline-rule { width: 84px; height: 3px; border-radius: 2px; background: var(--orange); }
 .baseline-foot .paw { flex: 0 0 auto; width: 32px; height: 32px; color: var(--olive); }
-.hero-copy .lede { margin: 1.2rem 0 1.8rem; max-width: 34rem; color: var(--brun-doux); }
+.hero-copy .lede { margin: 1.2rem 0 1.8rem; color: var(--brun-doux); }
 .hero-cta { display: flex; flex-wrap: wrap; gap: .8rem; }
 
 .figure { margin: 0; }
@@ -300,7 +300,42 @@ figcaption {
 }
 .press-slide h3 { margin: .8rem 0 .3rem; }
 .press-date { font-size: .88rem; color: var(--brun-doux); margin: 0 0 .9rem; }
-.press-excerpt { margin: 0 0 1.4rem; color: var(--brun-doux); max-width: 52ch; }
+/* Aucune largeur de ligne imposée : le texte va au bord de son cadre et ne
+   revient à la ligne que s'il déborde. Règle valable partout sur le site. */
+.press-excerpt { margin: 0 0 1.4rem; color: var(--brun-doux); }
+
+/* Deux accès pour un même article : le bouton mène à la version conseillée,
+   le lien discret à l'autre. Les deux tiennent 44 px de haut, cible tactile. */
+.press-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem 1.2rem; }
+.press-pdf {
+  display: inline-flex; align-items: center; gap: .45rem; min-height: 44px;
+  font-family: var(--font-sous); font-weight: 700; font-size: .95rem;
+  color: var(--brun-doux); text-decoration: underline;
+  text-underline-offset: 4px; text-decoration-color: var(--vert);
+  transition: color .18s ease, text-decoration-color .18s ease;
+}
+.press-pdf:hover { color: var(--brun); text-decoration-color: var(--brun); }
+.press-pdf svg { width: 1.05em; height: 1.05em; flex: 0 0 auto; }
+
+/* ---------- Espace journalistes ---------- */
+.presskit {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  padding: clamp(1.6rem, 4vw, 2.6rem);
+  background: var(--creme-bg); border-radius: var(--r-lg);
+  border: 1px solid rgba(65, 39, 16, .08);
+}
+.presskit h2 { font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.1rem); margin: 0 0 .5rem; }
+.presskit p { color: var(--brun-doux); margin: 0 0 1rem; }
+.presskit .presskit-intro { font-family: var(--font-sous); font-weight: 700; color: var(--brun); margin-bottom: .6rem; }
+.presskit ul { list-style: none; margin: 0 0 1.2rem; padding: 0; display: grid; gap: .45rem; }
+.presskit li {
+  position: relative; padding-left: 1.3rem; color: var(--brun-doux);
+}
+.presskit li::before {
+  content: ""; position: absolute; left: 0; top: .58em;
+  width: .42rem; height: .42rem; border-radius: 50%; background: var(--olive);
+}
+.presskit-note { font-size: .92rem; }
 
 .carousel-controls {
   display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 1.4rem;
@@ -330,7 +365,7 @@ figcaption {
   padding-block: clamp(2.6rem, 5vw, 3.6rem);
 }
 .footer-brand img { height: 70px; width: auto; }
-.footer-brand p { color: #e7d8c4; margin: 1rem 0 0; max-width: 30ch; }
+.footer-brand p { color: #e7d8c4; margin: 1rem 0 0; }
 .footer-col h2 { font-family: var(--font-sous); font-weight: 700; font-size: 1.05rem; color: #fff; margin: 0 0 .9rem; letter-spacing: .5px; }
 .footer-list { list-style: none; margin: 0; padding: 0; display: grid; gap: .7rem; }
 .footer-list li { display: flex; gap: .6rem; align-items: flex-start; }
@@ -352,14 +387,21 @@ figcaption {
 .linklike:hover { color: #fff; }
 
 /* ---------- Mentions légales (modale) ---------- */
+/* Le texte est long : la modale se plafonne à la hauteur de l'écran, l'en-tête
+   reste visible et seul le corps défile. Sans cela, le bouton de fermeture
+   part hors du cadre sur un petit écran. */
 .legal-dialog {
   border: 0; border-radius: var(--r-lg); padding: 0;
   max-width: 620px; width: calc(100% - 2rem);
+  max-height: calc(100dvh - 3rem);
+  display: flex; flex-direction: column; overflow: hidden;
   color: var(--brun); background: var(--blanc);
   box-shadow: 0 30px 80px rgba(65, 39, 16, .35);
 }
+.legal-dialog:not([open]) { display: none; }
 .legal-dialog::backdrop { background: rgba(65, 39, 16, .55); }
 .legal-dialog__head {
+  flex: 0 0 auto;
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
   padding: 1.3rem clamp(1.2rem, 4vw, 1.8rem);
   border-bottom: 1px solid rgba(65, 39, 16, .1);
@@ -374,9 +416,19 @@ figcaption {
 .legal-close:hover { background: var(--vert); }
 .legal-close:active { background: var(--orange); border-color: var(--orange); }
 .legal-close svg { width: 18px; height: 18px; }
-.legal-dialog__body { padding: 1.2rem clamp(1.2rem, 4vw, 1.8rem) 1.6rem; }
+.legal-dialog__body {
+  flex: 1 1 auto; overflow-y: auto; overscroll-behavior: contain;
+  padding: 1.2rem clamp(1.2rem, 4vw, 1.8rem) 1.6rem;
+}
 .legal-dialog__body p { margin: .5rem 0; font-size: .93rem; color: var(--brun-doux); }
 .legal-dialog__body a { color: var(--brun); }
+.legal-dialog__body h3 {
+  font-family: var(--font-sous); font-weight: 700; font-size: 1rem;
+  color: var(--olive-fonce); text-transform: uppercase; letter-spacing: 1px;
+  margin: 1.5rem 0 .35rem;
+}
+.legal-dialog__body h3:first-child { margin-top: 0; }
+.legal-dialog__body .legal-maj { margin-top: 1.5rem; font-style: italic; font-size: .87rem; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 860px) {
@@ -401,4 +453,9 @@ figcaption {
 @media (max-width: 480px) {
   .member-links { gap: .45rem; }
   .link-btn { flex: 1 1 auto; justify-content: center; }
+  /* Les deux accès à un article passent l'un sous l'autre, chacun pleine
+     largeur : côte à côte, le bouton se retrouve écrasé sur 2 lignes. */
+  .press-actions { flex-direction: column; align-items: stretch; gap: .7rem; }
+  .press-actions .btn { justify-content: center; }
+  .press-pdf { justify-content: center; }
 }
