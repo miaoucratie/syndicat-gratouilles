@@ -459,3 +459,44 @@ figcaption {
   .press-actions .btn { justify-content: center; }
   .press-pdf { justify-content: center; }
 }
+
+.member-activities { display: flex; flex-wrap: wrap; gap: .4rem; }
+
+/* ---------- Projet en préparation ---------- */
+.teaser-section { padding-bottom: clamp(3.2rem, 7vw, 5.5rem); }
+.teaser {
+  position: relative; overflow: hidden;
+  display: grid; grid-template-columns: auto 1fr; gap: clamp(1.4rem, 4vw, 2.8rem); align-items: start;
+  max-width: 60rem; margin-inline: auto;
+  padding: clamp(2rem, 4.5vw, 3rem) clamp(1.4rem, 4.5vw, 3rem) clamp(1.8rem, 4vw, 2.6rem);
+  background: var(--blanc); border-radius: var(--r-lg);
+  box-shadow: var(--ombre-carte); border: 1px solid rgba(65, 39, 16, .05);
+}
+.teaser::before {
+  content: ""; position: absolute; inset: 0 0 auto 0; height: 6px;
+  background: linear-gradient(90deg, #d9534f, #e68522, #f2c230, #8cb04a, #3f94c9, #8a5fb0);
+}
+.teaser-arc { display: block; width: clamp(110px, 14vw, 150px); height: auto; }
+.teaser .eyebrow { color: var(--brun-doux); }
+.teaser h2 { font-size: clamp(1.6rem, 1.25rem + 1.4vw, 2.3rem); margin: 0 0 .9rem; }
+.teaser p { margin: 0 0 1rem; color: var(--brun-doux); }
+.teaser .teaser-lead { font-size: clamp(1.05rem, 1rem + .3vw, 1.18rem); color: var(--brun); }
+.teaser-quote {
+  margin: 1.3rem 0 1.3rem; padding: .15rem 0 .15rem 1.1rem;
+  border-left: 4px solid var(--orange);
+}
+.teaser .teaser-quote p { margin: 0; font-style: italic; font-weight: 600; color: var(--brun); line-height: 1.5; }
+.teaser .teaser-note { font-size: .95rem; }
+.teaser .teaser-note a { color: var(--brun); font-weight: 600; }
+.teaser .btn--ghost { margin-top: .2rem; border-color: var(--brun); }
+.teaser .btn--ghost:hover { background: var(--brun); color: var(--blanc); }
+@media (max-width: 700px) {
+  .teaser { grid-template-columns: 1fr; gap: 1rem; }
+}
+@media (max-width: 480px) {
+  .teaser .btn { width: 100%; }
+}
+
+/* ---------- Lisibilité : pas de mot isolé en fin de paragraphe ---------- */
+h1, h2, h3, .baseline, .eyebrow, figcaption { text-wrap: balance; }
+p, li, summary, blockquote { text-wrap: pretty; }
