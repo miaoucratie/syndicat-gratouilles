@@ -2,28 +2,54 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Page introuvable | Le Syndicat des Gratouilles</title>
 <meta name="robots" content="noindex, follow">
-<meta name="theme-color" content="#fcf2e8">
+<meta name="theme-color" content="#FDFCF5">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/css/style.css">
+<link rel="preload" href="/assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/style.css?v=20261015u">
 <style>
-  .nf { min-height: 80vh; display: grid; place-items: center; text-align: center; }
-  .nf .container { max-width: 40rem; }
-  .nf img { height: 80px; width: auto; margin: 0 auto 1.5rem; }
-  .nf h1 { font-size: clamp(2rem, 1.5rem + 3vw, 3rem); }
-  .nf p { color: var(--brun-doux); margin: 1rem 0 1.8rem; }
+  /* Page 404 : même papier, même police, l'aquarelle du chat qui guette en vedette. */
+  .nf-head .in{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-block:18px;}
+  .nf{padding-block:clamp(24px,5vw,64px) clamp(64px,9vw,112px);}
+  .nf .in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(32px,6vw,80px);align-items:center;}
+  .nf-img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;object-position:80% 70%;border-radius:28px;}
+  .nf h1{font-size:clamp(2rem,3.6vw,3rem);letter-spacing:-.04em;line-height:1.08;margin-top:14px;}
+  .nf .lead{font-size:1.15rem;color:var(--graphite-2);margin-top:22px;max-width:44ch;}
+  .nf .lead + .lead{margin-top:12px;}
+  .nf .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px;}
+  .nf .btn.ghost{background:transparent;color:var(--graphite);box-shadow:inset 0 0 0 1.5px var(--graphite);}
+  .nf-foot{border-top:1px solid var(--filet);}
+  .nf-foot .in{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 24px;padding-block:24px 36px;font-size:14px;color:var(--graphite-2);}
+  .nf-foot a{color:var(--graphite-2);display:inline-block;padding:6px 0;}
+  @media (max-width:900px){.nf .in{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
+<header class="nf-head"><div class="in">
+  <a class="brand" href="/">Le Syndicat des Gratouilles</a>
+</div></header>
+
 <main class="nf">
-  <div class="container">
-    <img src="/assets/img/logo.png" width="720" height="347" alt="Le Syndicat des Gratouilles">
-    <h1>Page introuvable</h1>
-    <p>Cette page a filé comme un chat surpris. Revenons à l'accueil pour retrouver les membres du collectif.</p>
-    <a class="btn" href="/">Retour à l'accueil</a>
+  <div class="in">
+    <img class="nf-img" src="/assets/img/rejoindre.jpg" width="1600" height="900" alt="Aquarelle : un chat tigré assis sur un muret scrute un champ d'herbes sèches.">
+    <div>
+      <p class="eyebrow">Erreur 404</p>
+      <h1>Cette page reste introuvable, comme le mulot que ce chat semble chercher.</h1>
+      <p class="lead">Il surveille ce champ depuis un bon moment, sans résultat. Le lien que vous avez suivi est sans doute ancien, ou mal recopié.</p>
+      <p class="lead">Les membres du collectif, eux, sont bien là, sur la page d'accueil.</p>
+      <div class="ctas">
+        <a class="btn" href="/">Retour à l'accueil</a>
+        <a class="btn ghost" href="/#pros">Voir les pros</a>
+      </div>
+    </div>
   </div>
 </main>
+
+<footer class="nf-foot"><div class="in">
+  <a href="/mentions-legales.html">Mentions légales</a>
+  <span>© 2026 Irina TALBOT EI</span>
+</div></footer>
 </body>
 </html>
