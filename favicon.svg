@@ -1,4 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#fcf2e8"/>
-  <path d="M32 50s-17-10.4-17-24a11 11 0 0 1 17-9.2A11 11 0 0 1 49 26c0 13.6-17 24-17 24z" fill="#9e8e33"/>
+  <defs>
+    <radialGradient id="a" cx="0.36" cy="0.42" r="0.55"><stop offset="0" stop-color="#C9DAF2"/><stop offset="1" stop-color="#C9DAF2" stop-opacity="0"/></radialGradient>
+    <radialGradient id="b" cx="0.66" cy="0.6" r="0.5"><stop offset="0" stop-color="#F1CADF"/><stop offset="1" stop-color="#F1CADF" stop-opacity="0"/></radialGradient>
+    <radialGradient id="c" cx="0.55" cy="0.3" r="0.4"><stop offset="0" stop-color="#DCCBEF"/><stop offset="1" stop-color="#DCCBEF" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#FDFCF5"/>
+  <rect width="64" height="64" rx="14" fill="url(#a)"/>
+  <rect width="64" height="64" rx="14" fill="url(#b)"/>
+  <rect width="64" height="64" rx="14" fill="url(#c)"/>
+  <text x="32" y="45" text-anchor="middle" font-family="Manrope, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-weight="800" font-size="36" fill="#2E2D2B">G</text>
 </svg>

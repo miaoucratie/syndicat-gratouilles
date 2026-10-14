@@ -1,15 +1,15 @@
 {
   "name": "Le Syndicat des Gratouilles",
   "short_name": "Les Gratouilles",
-  "description": "Collectif de professionnels du bien-être animal en Ille-et-Vilaine.",
+  "description": "Annuaire gratuit de professionnels de l'animal de confiance en pays de Vitré, de Châteaugiron et de Janzé.",
   "lang": "fr",
   "id": "/",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#fcf2e8",
-  "theme_color": "#fcf2e8",
+  "background_color": "#FDFCF5",
+  "theme_color": "#FDFCF5",
   "icons": [
     { "src": "assets/img/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
-    { "src": "assets/img/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+    { "src": "assets/img/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
   ]
 }
