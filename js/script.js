@@ -46,3 +46,40 @@ document.querySelectorAll('[data-shuffle]').forEach(function(ul){
   document.querySelectorAll('svg.lavis[data-saison] ellipse').forEach(function(e,i){ e.setAttribute('fill', pal[(i*7+3)%pal.length]); });
   document.documentElement.setAttribute('data-saison', s);
 })();
+
+/* Encart « En ce moment » : les actualités défilent à l'horizontale, la suivante dépasse au bord. Les points indiquent la position et permettent d'y aller. */
+(function(){
+  var track=document.querySelector('.now-track'), dots=document.querySelector('.now-dots');
+  if(!track || !dots) return;
+  var slides=track.querySelectorAll('.now-slide');
+  if(slides.length<2) return;
+  var btns=[];
+  slides.forEach(function(sl, i){
+    var b=document.createElement('button');
+    b.type='button';
+    b.setAttribute('aria-label', 'Actualité '+(i+1)+' sur '+slides.length+' : '+sl.querySelector('b').textContent);
+    b.addEventListener('click', function(){ track.scrollTo({left: sl.offsetLeft-track.offsetLeft, behavior:'smooth'}); mark(i); });
+    dots.appendChild(b); btns.push(b);
+  });
+  function mark(n){
+    btns.forEach(function(b, i){ b.setAttribute('aria-current', i===n ? 'true' : 'false'); });
+    track.classList.toggle('at-end', n===slides.length-1);
+  }
+  function current(){
+    var x=track.scrollLeft, best=0, d=Infinity;
+    slides.forEach(function(sl, i){ var e=Math.abs(sl.offsetLeft-track.offsetLeft-x); if(e<d){ d=e; best=i; } });
+    if(x+track.clientWidth >= track.scrollWidth-2) best=slides.length-1;
+    mark(best);
+  }
+  var t;
+  track.addEventListener('scroll', function(){ clearTimeout(t); t=setTimeout(current, 60); }, {passive:true});
+  dots.hidden=false; current();
+})();
+
+/* Un lien vers un bloc dépliable (espace presse) l'ouvre. */
+(function(){
+  function open(id){ var el=id && document.getElementById(id); if(el && el.tagName==='DETAILS') el.open=true; }
+  document.addEventListener('click', function(e){ var a=e.target.closest && e.target.closest('a[href^="#"]'); if(a) open(a.getAttribute('href').slice(1)); });
+  window.addEventListener('hashchange', function(){ open(location.hash.slice(1)); });
+  open(location.hash.slice(1));
+})();
