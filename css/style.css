@@ -97,6 +97,7 @@ section[id],[id^="pro-"],.presskit{scroll-margin-top:84px;}
 .now-row small{display:block;font-size:14px;line-height:1.45;color:var(--graphite-2);margin-top:3px;}
 .now-row>svg{width:20px;height:20px;flex:none;margin-left:auto;}
 .now-thumb{width:64px;height:64px;flex:none;border-radius:12px;object-fit:cover;}
+@media (min-width:1100px){.now{max-width:none;width:calc(min(100vw, var(--max)) - 2 * var(--gut));}.now-track{-webkit-mask-image:none;mask-image:none;}.now-slide{flex:1 1 0;min-width:0;}}
 @media (max-width:480px){.now-row{flex-wrap:wrap;align-content:flex-start;}.now-thumb{width:100%;height:96px;}.now-row>span{flex:1 1 0;min-width:0;}}
 
 /* ---------- Sections ---------- */

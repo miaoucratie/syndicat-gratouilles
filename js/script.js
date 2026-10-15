@@ -47,7 +47,7 @@ document.querySelectorAll('[data-shuffle]').forEach(function(ul){
   document.documentElement.setAttribute('data-saison', s);
 })();
 
-/* Encart « En ce moment » : les actualités défilent à l'horizontale, la suivante dépasse au bord. Les points indiquent la position et permettent d'y aller. */
+/* Encart « En ce moment » : sur petit écran, les actualités défilent à l'horizontale et la suivante dépasse au bord ; les points indiquent la position. Quand tout tient, les points disparaissent. */
 (function(){
   var track=document.querySelector('.now-track'), dots=document.querySelector('.now-dots');
   if(!track || !dots) return;
@@ -73,7 +73,9 @@ document.querySelectorAll('[data-shuffle]').forEach(function(ul){
   }
   var t;
   track.addEventListener('scroll', function(){ clearTimeout(t); t=setTimeout(current, 60); }, {passive:true});
-  dots.hidden=false; current();
+  function fit(){ dots.hidden = track.scrollWidth <= track.clientWidth + 2; }
+  window.addEventListener('resize', fit);
+  fit(); current();
 })();
 
 /* Un lien vers un bloc dépliable (espace presse) l'ouvre. */
