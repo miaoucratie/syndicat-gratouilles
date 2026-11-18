@@ -26,7 +26,7 @@ document.querySelectorAll('[data-shuffle]').forEach(function(ul){
   head.querySelectorAll('.nav a').forEach(function(a){a.addEventListener('click',function(){set(false);});});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false);});
 })();
-/* Lavis du nom : sa palette suit la saison du jour. L'arc-en-ciel reste réservé au podcast.
+/* Lavis du nom : sa palette suit la saison du jour.
    Pour prévisualiser une saison : ajouter #printemps, #ete, #automne ou #hiver à l'adresse. */
 (function(){
   var P={
